@@ -27,13 +27,13 @@ public class App {
 	
 	public static void main(String[] args) {
 		App app = new App();
-		app.ReadData();
+		app.ReadDataReturn();
 		
 		app.importData();
 		
 		for (String str:app.cnMap.keySet()) {
-			//System.out.println(app.cnMap.get(str));
-			//System.out.println(app.enMap.get(str));
+			System.out.println(app.cnMap.get(str));
+			System.out.println(app.enMap.get(str));
 		}
 		
 		System.out.println("一共替换了" + app.i + "个");
@@ -96,6 +96,29 @@ public class App {
 				tag.add(strArray[0]);
 				enMap.put(strArray[0], strArray[1]);
 				cnMap.put(strArray[0], strArray[2]);
+				//System.out.println(row);
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void ReadDataReturn() {
+		try {
+			FileReader read = new FileReader("/Volumes/Macintosh Data/Yujian/Dropbox/los/LoS翻译成品0729/LoS其他提示_ch_完成_130731.txt");
+			BufferedReader br = new BufferedReader(read);
+			String row;
+			tag = new ArrayList<String>();
+			enMap = new HashMap<String, String>();
+			cnMap = new HashMap<String, String>();
+			while ((row = br.readLine()) != null) {
+				if (row.equals("")) continue;
+				String[] strArray = row.split("	");
+				tag.add(strArray[0]);
+				enMap.put(strArray[0], strArray[1]);
+				cnMap.put(strArray[0], br.readLine());
 				//System.out.println(row);
 			}
 		} catch (FileNotFoundException e) {
