@@ -26,8 +26,8 @@ public class App {
 
 	public static void main(String[] args) {
 		App app = new App();
-		//app.ReadDataReturn();
-		app.ReadData();
+		app.ReadDataReturn();
+		//app.ReadData();
 		System.out.println("tag size: "+app.tag.size());
 		System.out.println("cn size: "+app.cnMap.size());
 
@@ -139,7 +139,6 @@ public class App {
 
 			while ((row = br.readLine()) != null) {
 				boolean isMatch = false;
-				
 
 				for (String str : tag) {
 					String trimRow;
@@ -148,12 +147,17 @@ public class App {
 					if (trimRow.equals(str) && !trimRow.equals(row)) {
 						fileWriter.write(row);
 						fileWriter.write(wlnChar);
-						br.readLine();
+						row = br.readLine();
 						try {
 							fileWriter.write(cnMap.get(str));
 							fileWriter.write(wlnChar);
 							cnMap.remove(str);
 							isMatch = true;
+							if (!row.equals(enMap.get(str))) {
+								System.out.println("--D--"+row);
+							}else {
+								System.out.println("--A--"+row);
+							}
 							i++;
 							break;
 						} catch (NullPointerException e) {
@@ -177,7 +181,7 @@ public class App {
 	public void ReadData() {
 		try {
 			FileReader read = new FileReader(
-					"/Volumes/Macintosh Data/Yujian/Dropbox/los/LoS翻译成品0729/LoS原画标题_ch_完成_130729.txt");
+					"/Volumes/Macintosh Data/Yujian/Dropbox/los/LoS翻译成品0729/战斗提示_ch_完成.txt");
 			BufferedReader br = new BufferedReader(read);
 			String row;
 			tag = new ArrayList<String>();
@@ -203,7 +207,7 @@ public class App {
 	public void ReadDataReturn() {
 		try {
 			FileReader read = new FileReader(
-					"/Volumes/Macintosh Data/Yujian/Dropbox/los/LoS翻译成品0729/LoS其他提示_ch_完成_130731改.txt");
+					"/Volumes/Macintosh Data/Yujian/Dropbox/los/LoS翻译成品0729/unreplaced_0807查漏补缺_2.txt");
 			BufferedReader br = new BufferedReader(read);
 			String row;
 			tag = new ArrayList<String>();
