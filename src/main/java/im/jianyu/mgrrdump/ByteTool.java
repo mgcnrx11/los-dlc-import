@@ -11,6 +11,12 @@ public class ByteTool {
 		System.arraycopy(srcBytes, offset, converted, 0, length);
 		return ByteTool.byte2int(converted);
 	}
+	
+	public static String getStringFromData(byte[] srcBytes, int offset, int length) {
+		byte[] converted = new byte[length];
+		System.arraycopy(srcBytes, offset, converted, 0, length);
+		return String.valueOf(ByteTool.getChars(converted));
+	}
 
 	public static char[] getChars(byte[] bytes) {
 		Charset cs = Charset.forName("ISO-8859-1");
